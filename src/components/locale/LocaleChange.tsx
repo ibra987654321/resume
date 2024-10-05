@@ -46,7 +46,7 @@ const LocaleChange = () => {
         if (selected) {
             changeLanguage(selected.id);
         }
-    }, [selected]);
+    }, [selected, firstChange]);
 
     const changeLanguage = (lng: string) => {
         i18n.changeLanguage(lng);

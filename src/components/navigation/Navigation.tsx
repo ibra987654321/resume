@@ -21,14 +21,14 @@ const Navigation = ({children}: any) => {
         <header className="fixed backdrop-blur inset-x-0 top-0 z-50 ">
             <nav aria-label="Global" className="flex items-center justify-between p-4 max-w-6xl mx-auto lg:px-8">
                 <div className="flex lg:flex-1">
-                    <a href="#" className="-m-1.5 p-1.5">
+                    <div className="-m-1.5 p-1.5">
                         <span className="sr-only">Your Company</span>
                         <img
                             alt=""
                             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                             className="h-8 w-auto"
                         />
-                    </a>
+                    </div>
                 </div>
                 <div className="flex lg:hidden">
                     <button
@@ -56,14 +56,14 @@ const Navigation = ({children}: any) => {
                 <DialogPanel
                     className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                     <div className="flex items-center justify-between">
-                        <a href="#" className="-m-1.5 p-1.5">
+                        <div className="-m-1.5 p-1.5">
                             <span className="sr-only">Your Company</span>
                             <img
                                 alt=""
                                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                                 className="h-8 w-auto"
                             />
-                        </a>
+                        </div>
                         <button
                             type="button"
                             onClick={() => setMobileMenuOpen(false)}
