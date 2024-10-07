@@ -1,4 +1,4 @@
-import meImage from '../../assets/images/Me.png';
+import meImage from '../../assets/images/photo_web.webp';
 import FrameWorkIcons from "./frameworkIcons/FrameWorkIcons";
 import {useTranslation} from "react-i18next";
 import {getDownloadURL, ref} from "firebase/storage"

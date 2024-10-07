@@ -5,6 +5,8 @@ import {useTranslation} from "react-i18next";
 
 const Experience = () => {
     const {i18n, t}= useTranslation()
+    // ru-RU
+    console.log(i18n)
     const reversedExperienceData = [...ExperienceData].reverse();
 
     return (
@@ -41,12 +43,12 @@ const Experience = () => {
                                     </svg>
                                 </span>
                                 <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900">
-                                    <a href={i.link} className=" transform transition-transform duration-500 hover:text-indigo-500">{i[`name_${i18n.language}` as keyof ExperienceDataDto]}</a>
+                                    <a href={i.link} className=" transform transition-transform duration-500 hover:text-indigo-500">{i[`name_${i18n.language === 'ru-RU' ? 'ru' : i18n.language}` as keyof ExperienceDataDto]}</a>
                                 </h3>
                                 <time
-                                    className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{i[`period_${i18n.language}` as keyof ExperienceDataDto]}
+                                    className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{i[`period_${i18n.language === 'ru-RU' ? 'ru' : i18n.language}` as keyof ExperienceDataDto]}
                                 </time>
-                                <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{i[`description_${i18n.language}` as keyof ExperienceDataDto]}</p>
+                                <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{i[`description_${i18n.language === 'ru-RU' ? 'ru' : i18n.language}` as keyof ExperienceDataDto]}</p>
                                 <ul className="mt-2 flex flex-wrap" aria-label="Technologies used">
                                     {
                                         i.tags.map((tag: string, index: number) => (
