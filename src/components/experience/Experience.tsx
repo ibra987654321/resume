@@ -1,13 +1,39 @@
 import React from 'react';
 import {ExperienceData, ExperienceDataDto} from "./ExperienceData";
 import {useTranslation} from "react-i18next";
+// import { collection, getDocs } from "firebase/firestore";
+// import { db } from "../../firebase"; // Импорт Firestore
+//
+// // Интерфейс для данных "Experience"
+// interface ExperienceData {
+//     id: string;
+// }
 
-
-const Experience = () => {
+const Experience: React.FC = () => {
     const {i18n, t}= useTranslation()
-    // ru-RU
-    console.log(i18n)
     const reversedExperienceData = [...ExperienceData].reverse();
+
+    // const [experience, setExperience] = useState<ExperienceData[]>([]);
+    // const [loading, setLoading] = useState<boolean>(true);
+    //
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const querySnapshot = await getDocs(collection(db, "experience"));
+    //             const experienceList = querySnapshot.docs.map(doc => ({
+    //                 id: doc.id,
+    //                 ...doc.data()
+    //             })) as ExperienceData[]; // Приведение данных к типу ExperienceData
+    //             setExperience(experienceList);
+    //         } catch (error) {
+    //             console.error("Ошибка при загрузке данных:", error);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+    //
+    //     fetchData();
+    // }, []);
 
     return (
         <div className="max-w-6xl md:mx-auto md:grid grid-cols-3 my-20 mx-10" id="experience">
@@ -15,6 +41,11 @@ const Experience = () => {
                 <h2 className="text-3xl text-indigo-500 font-bold text-center mb-6">{t('experience')}</h2>
             </div>
             <div className="md:col-span-1 ">
+                {/*{experience.map(item => (*/}
+                {/*    <li key={item.id}>*/}
+                {/*        <h3>{item.id}</h3>*/}
+                {/*    </li>*/}
+                {/*))}*/}
             </div>
             <div className="md:col-span-2 relative">
                 <div

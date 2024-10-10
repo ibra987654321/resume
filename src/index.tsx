@@ -5,7 +5,8 @@ import App from './App';
 
 import './i18n/i18n'
 import './index.css';
-import 'gsap'
+import 'antd/dist/reset.css'
+import 'antd/dist/antd'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

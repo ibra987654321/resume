@@ -1,5 +1,6 @@
 export interface ExperienceDataDto {
     id: number;
+    key: string;
     name_en: string;
     name_ru: string;
     name_ky: string;
@@ -15,6 +16,7 @@ export interface ExperienceDataDto {
 export const ExperienceData: ExperienceDataDto[] = [
     {
         id: 1,
+        key: '1',
         name_en: 'Aloo.kg Internet store (Website layout designer)',
         name_ru: 'Aloo.kg Интернет магазин (Верстальщик)',
         name_ky: 'Aloo.kg Интернет магазини (Вебсайттын макети дизайнери)',
@@ -29,6 +31,7 @@ export const ExperienceData: ExperienceDataDto[] = [
     },
     {
         id: 2,
+        key: '2',
         name_en: 'Beeline Kyrgyzstan (Front-end junior )',
         name_ru: 'Билайн Кыргызстан (Front-end junior )',
         name_ky: 'Билайн Кыргызстан (Front-end junior )',
@@ -58,6 +61,7 @@ export const ExperienceData: ExperienceDataDto[] = [
     },
     {
         id: 3,
+        key: '3',
         name_en: 'Beeline Kyrgyzstan (Front-end )',
         name_ru: 'Билайн Кыргызстан (Front-end )',
         name_ky: 'Билайн Кыргызстан (Front-end )',
@@ -79,6 +83,7 @@ export const ExperienceData: ExperienceDataDto[] = [
 
     {
         id: 4,
+        key: '4',
         name_en: 'Center for Digital Education under the MINISTRY OF EDUCATION AND SCIENCE OF THE KYRGYZ REPUBLIC (Front-end )',
         name_ru: 'Центр цифрового образования при Министерства образования и науки Кыргызской Республики (Front-end )',
         name_ky: 'КЫРГЫЗ РЕСПУБЛИКАСЫНЫН БИЛИМ ЖАНА Илим министрлигине караштуу Санариптик билим берүү борбору (Front-end )',

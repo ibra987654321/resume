@@ -1,13 +1,19 @@
 import React from 'react';
-import MainSite from './widgets/main-site/MainSite'
 import './App.css';
-
+import MainPage from "./pages/main-page/MainPage";
+import {Route, BrowserRouter, Routes} from "react-router-dom";
+import SettingsPage from "./pages/settings/SettingsPage";
 function App() {
-  return (
-      <div className="App">
-        <MainSite/>
-      </div>
-  );
+    return (
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<MainPage/>}/>
+                    <Route path="/settings" element={<SettingsPage/>}/>
+                </Routes>
+            </BrowserRouter>
+        </>
+    );
 }
 
 export default App;
