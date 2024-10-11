@@ -1,13 +1,34 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ExperienceData, ExperienceDataDto} from "./ExperienceData";
 import {useTranslation} from "react-i18next";
+import {db} from "../../firebase"
+import { collection, getDoc, doc } from "firebase/firestore";
 
 
 const Experience = () => {
-    const {i18n, t}= useTranslation()
-    // ru-RU
-    console.log(i18n)
+    const {i18n, t} = useTranslation()
     const reversedExperienceData = [...ExperienceData].reverse();
+
+    useEffect(() => {
+        const fetchCityData = async () => {
+            try {
+                const docRef = doc(db, "experience"); // Указываем коллекцию и документ
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    // Получаем данные и приводим к интерфейсу CityData
+                    console.log(docSnap.data())
+                } else {
+                    console.log("Документ не найден");
+                }
+            } catch (error) {
+                console.error("Ошибка получения документа:", error);
+            } finally {
+            }
+        };
+
+        fetchCityData();
+    }, []);
 
     return (
         <div className="max-w-6xl md:mx-auto md:grid grid-cols-3 my-20 mx-10" id="experience">
@@ -32,7 +53,7 @@ const Experience = () => {
                 <ol className="relative border-s border-gray-200 dark:border-gray-700">
 
                     {
-                        reversedExperienceData.map((i: ExperienceDataDto,idx: number) => (
+                        reversedExperienceData.map((i: ExperienceDataDto, idx: number) => (
                             <li className="mb-10 ms-6" key={idx}>
                                 <span
                                     className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white dark:ring-indigo-700 dark:bg-indigo-500">
@@ -43,7 +64,8 @@ const Experience = () => {
                                     </svg>
                                 </span>
                                 <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900">
-                                    <a href={i.link} className=" transform transition-transform duration-500 hover:text-indigo-500">{i[`name_${i18n.language === 'ru-RU' ? 'ru' : i18n.language}` as keyof ExperienceDataDto]}</a>
+                                    <a href={i.link}
+                                       className=" transform transition-transform duration-500 hover:text-indigo-500">{i[`name_${i18n.language === 'ru-RU' ? 'ru' : i18n.language}` as keyof ExperienceDataDto]}</a>
                                 </h3>
                                 <time
                                     className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{i[`period_${i18n.language === 'ru-RU' ? 'ru' : i18n.language}` as keyof ExperienceDataDto]}

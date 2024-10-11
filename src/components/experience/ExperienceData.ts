@@ -21,7 +21,7 @@ export const ExperienceData: ExperienceDataDto[] = [
         description_en: 'In this role, I actively worked on content creation and management using the WordPress platform. I took the initiative to create new pages and adjust the layout where necessary, which contributed to an improved user experience and overall website appeal.',
             description_ru: 'В этой роли я активно занимался созданием и управлением контентом на платформе WordPress. Я проявлял инициативу, создавая новые страницы и адаптируя дизайн там, где это было необходимо, что способствовало улучшению пользовательского опыта и общей привлекательности сайта.',
         description_ky: 'Бул ролдо мен WordPress платформасында контентти түзүү жана башкаруу менен активдүү иштедим. Жаңы барактарды түзүү жана зарыл жерлерде дизайнын жөндөө боюнча демилгени өзүм алып, сайттын колдонуучулар үчүн ыңгайлуулугун жана жалпы тартылуусун жакшыртууга көмөктөштүм.',
-        tags:['Wordpress', 'HTML', 'CSS'],
+            tags:['Wordpress', 'HTML', 'CSS'],
         period_en: 'Jan — July 2020',
         period_ru: 'Янв — Июль 2020',
         period_ky: 'Үчтүн айы — Теке 2020',
