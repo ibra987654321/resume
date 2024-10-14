@@ -1,33 +1,30 @@
-import React, {useEffect} from 'react';
-import {ExperienceData, ExperienceDataDto} from "./ExperienceData";
+import React, {useEffect, useState} from 'react';
+import {ExperienceDataDto} from "./ExperienceData";
 import {useTranslation} from "react-i18next";
-import {db} from "../../firebase"
-import { collection, getDoc, doc } from "firebase/firestore";
+import {collection, getDocs} from "firebase/firestore";
+import {db} from "../../firebase";
 
+const Experience: React.FC = () => {
+    const {i18n, t}= useTranslation()
+    const [loading, setLoading] = useState(false);
+    const [dataSource, setDataSource] = useState<ExperienceDataDto[]>([]);
 
-const Experience = () => {
-    const {i18n, t} = useTranslation()
-    const reversedExperienceData = [...ExperienceData].reverse();
+    const fetchData = async () => {
+        setLoading(true);
+        const querySnapshot = await getDocs(collection(db, 'experience'));
+        const data = querySnapshot.docs.map(doc => ({
+            key: doc.id,
+            ...doc.data(),
+        })) as ExperienceDataDto[];
+        setLoading(false);
+        const sortedProjects = data.sort((a, b) => {
+            return a.position - b.position; // Сравнение по начальной дате
+        });
+        setDataSource(sortedProjects);
+    };
 
     useEffect(() => {
-        const fetchCityData = async () => {
-            try {
-                const docRef = doc(db, "experience"); // Указываем коллекцию и документ
-                const docSnap = await getDoc(docRef);
-
-                if (docSnap.exists()) {
-                    // Получаем данные и приводим к интерфейсу CityData
-                    console.log(docSnap.data())
-                } else {
-                    console.log("Документ не найден");
-                }
-            } catch (error) {
-                console.error("Ошибка получения документа:", error);
-            } finally {
-            }
-        };
-
-        fetchCityData();
+        fetchData();
     }, []);
 
     return (
@@ -50,10 +47,10 @@ const Experience = () => {
                         className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#4f46e5] to-[#7c3aed] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
                     />
                 </div>
-                <ol className="relative border-s border-gray-200 dark:border-gray-700">
+                <ol className="relative border-gray-200 dark:border-gray-700">
 
                     {
-                        reversedExperienceData.map((i: ExperienceDataDto, idx: number) => (
+                        !loading ? dataSource.map((i: ExperienceDataDto,idx: number) => (
                             <li className="mb-10 ms-6" key={idx}>
                                 <span
                                     className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white dark:ring-indigo-700 dark:bg-indigo-500">
@@ -64,8 +61,7 @@ const Experience = () => {
                                     </svg>
                                 </span>
                                 <h3 className="flex items-center mb-1 text-lg font-semibold text-gray-900">
-                                    <a href={i.link}
-                                       className=" transform transition-transform duration-500 hover:text-indigo-500">{i[`name_${i18n.language === 'ru-RU' ? 'ru' : i18n.language}` as keyof ExperienceDataDto]}</a>
+                                    <a href={i.link} className=" transform transition-transform duration-500 hover:text-indigo-500">{i[`name_${i18n.language === 'ru-RU' ? 'ru' : i18n.language}` as keyof ExperienceDataDto]}</a>
                                 </h3>
                                 <time
                                     className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{i[`period_${i18n.language === 'ru-RU' ? 'ru' : i18n.language}` as keyof ExperienceDataDto]}
@@ -84,7 +80,47 @@ const Experience = () => {
                                     }
                                 </ul>
                             </li>
-                        ))
+                        )) : (
+                            <div>
+                                <div role="status" className="sm:max-w-md  md:max-w-3xl animate-pulse mb-10">
+                                    <div className="h-3 bg-gray-400 rounded-full w-full mb-4"></div>
+                                    <div
+                                        className="h-2 bg-gray-400 rounded-full w-full mb-2.5"></div>
+                                    <div className="h-2 bg-gray-400 rounded-full mb-3.5"></div>
+                                    <div
+                                        className="h-2 bg-gray-400 rounded-full max-w-lg mb-2.5"></div>
+                                    <div
+                                        className="h-2 bg-gray-400 rounded-full w-full mb-2.5"></div>
+                                    <div className="h-2 bg-gray-400 rounded-full max-w-lg mr-4"></div>
+                                    <span className="sr-only">Loading...</span>
+                                </div>
+                                <div role="status" className="sm:max-w-md  md:max-w-3xl animate-pulse mb-10">
+                                    <div className="h-3 bg-gray-400 rounded-full w-full mb-4"></div>
+                                    <div
+                                        className="h-2 bg-gray-400 rounded-full w-full mb-2.5"></div>
+                                    <div className="h-2 bg-gray-400 rounded-full mb-3.5"></div>
+                                    <div
+                                        className="h-2 bg-gray-400 rounded-full max-w-lg mb-2.5"></div>
+                                    <div
+                                        className="h-2 bg-gray-400 rounded-full w-full mb-2.5"></div>
+                                    <div className="h-2 bg-gray-400 rounded-full max-w-lg mr-4"></div>
+                                    <span className="sr-only">Loading...</span>
+                                </div>
+                                <div role="status" className="sm:max-w-md  md:max-w-3xl animate-pulse mb-10">
+                                    <div className="h-3 bg-gray-400 rounded-full w-full mb-4"></div>
+                                    <div
+                                        className="h-2 bg-gray-400 rounded-full w-full mb-2.5"></div>
+                                    <div className="h-2 bg-gray-400 rounded-full mb-3.5"></div>
+                                    <div
+                                        className="h-2 bg-gray-400 rounded-full max-w-lg mb-2.5"></div>
+                                    <div
+                                        className="h-2 bg-gray-400 rounded-full w-full mb-2.5"></div>
+                                    <div className="h-2 bg-gray-400 rounded-full max-w-lg mr-4"></div>
+                                    <span className="sr-only">Loading...</span>
+                                </div>
+                            </div>
+
+                        )
                     }
                 </ol>
             </div>
